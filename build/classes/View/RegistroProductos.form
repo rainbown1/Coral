@@ -64,7 +64,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -88,10 +88,8 @@
                           <Component id="agregar" min="-2" max="-2" attributes="0"/>
                           <Component id="name19" min="-2" pref="185" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="nameLabel20" alignment="0" max="32767" attributes="0"/>
-                          <Component id="name17" alignment="0" pref="185" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="name17" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                      <Component id="nameLabel20" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="150" max="32767" attributes="0"/>
               </Group>
