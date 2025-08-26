@@ -4,17 +4,27 @@
  */
 package View;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LENOVO
  */
 public class NuevaVenta extends javax.swing.JInternalFrame {
-
+    DefaultTableModel model = new DefaultTableModel();
+    ArrayList<Integer> detalles = new ArrayList<>();
     /**
      * Creates new form NuevaVenta
      */
     public NuevaVenta() {
         initComponents();
+        tablaNuevaVenta.setModel(model);
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Total");
+
     }
 
     /**
@@ -34,11 +44,11 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaNuevaVenta = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        idProducto = new javax.swing.JTextField();
+        nombreProducto = new javax.swing.JTextField();
         revisar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         precioP = new javax.swing.JLabel();
-        agregar1 = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         agregar2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
@@ -87,8 +97,8 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
         jLabel10.setForeground(new java.awt.Color(7, 16, 24));
         jLabel10.setText("Nombre");
 
-        idProducto.setBackground(new java.awt.Color(255, 255, 255));
-        idProducto.setForeground(new java.awt.Color(56, 80, 106));
+        nombreProducto.setBackground(new java.awt.Color(255, 255, 255));
+        nombreProducto.setForeground(new java.awt.Color(56, 80, 106));
 
         revisar.setBackground(new java.awt.Color(178, 235, 242));
         revisar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
@@ -113,13 +123,13 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
         precioP.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         precioP.setForeground(new java.awt.Color(51, 51, 51));
 
-        agregar1.setBackground(new java.awt.Color(178, 235, 242));
-        agregar1.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        agregar1.setForeground(new java.awt.Color(7, 16, 24));
-        agregar1.setText("Buscar");
-        agregar1.addActionListener(new java.awt.event.ActionListener() {
+        buscar.setBackground(new java.awt.Color(178, 235, 242));
+        buscar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        buscar.setForeground(new java.awt.Color(7, 16, 24));
+        buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar1ActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
 
@@ -153,7 +163,7 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(idProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(precioP, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +181,7 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
                                                     .addComponent(agregar2))))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addGap(18, 18, 18)
-                                            .addComponent(agregar1))))))
+                                            .addComponent(buscar))))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(19, 19, 19)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -184,8 +194,8 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(idProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(agregar1))
+                    .addComponent(nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscar))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +232,16 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-       
+       String nombre = nombreProducto.getText();
+        int cant = Integer.parseInt(cantidad.getText());
+        double Precio = Double.parseDouble(precioP.getText());
+        double subtotal = cant * Precio;
+        double impuesto = subtotal * 0.16;
+        double total = subtotal + impuesto;
+        model.addRow(new Object[]{
+             nombre, cant, Precio, total
+        });
+       // detalles.add(v);
     }//GEN-LAST:event_agregarActionPerformed
 
     private void revisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisarActionPerformed
@@ -239,9 +258,9 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
       
     }//GEN-LAST:event_guardarActionPerformed
 
-    private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_agregar1ActionPerformed
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        precioP.setText(String.valueOf(25.0));
+    }//GEN-LAST:event_buscarActionPerformed
 
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
 
@@ -250,17 +269,17 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
-    private javax.swing.JButton agregar1;
     private javax.swing.JButton agregar2;
+    private javax.swing.JButton buscar;
     private javax.swing.JTextField cantidad;
     private javax.swing.JButton guardar;
-    private javax.swing.JTextField idProducto;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nombreProducto;
     private javax.swing.JLabel precioP;
     private javax.swing.JButton revisar;
     private javax.swing.JTable tablaNuevaVenta;
